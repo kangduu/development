@@ -50,3 +50,27 @@ git@kangduu.github.com: Permission denied (publickey).
 ```
 
 ### 免密pull push
+
+- 输入 cd ~
+
+- 输入 vi .gitconfig
+- 按i
+
+- 光标移到空白处输将下面的代码内容完整输入进去
+
+```
+[credential]
+helper = store -–file .git-credentials
+```
+
+- 按 esc
+
+- 按 :wq
+
+  此时已保存刚刚的配置
+
+- 新打开下bash终端
+
+  git push
+
+  这时候还会让你输入一次用户名密码，就这一次，以后就不用再次输入了。
