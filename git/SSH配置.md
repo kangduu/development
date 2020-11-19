@@ -17,15 +17,15 @@ ssh-keygen -t rsa -f ~/.ssh/kangduu_rsa -C 'dukang1127@163.com'
 - 在.ssh目录下新建config文件，内容如下：
 
 ```
-Host github.com_KAngJoin //随便
+Host KAngJoin.github.com //随便，多个时不可相同，用于验证ssh
     User git
-    HostName github.com:KAngJoin //远程服务器地址clone地址@后面的地址（重要）
+    HostName github.com //远程服务器地址clone地址@后面的地址（重要）
     PreferredAuthentications publickey // 必须
     IdentityFile ~/.ssh/KAngJoin_rsa //对应密钥
 
-Host github.com_kangduu
+Host kangduu.github.com
     User git
-    HostName github.com:kangduu
+    HostName github.com
     PreferredAuthentications publickey
     IdentityFile ~/.ssh/kangduu_rsa
 ```
@@ -35,5 +35,18 @@ Host github.com_kangduu
 ### 验证ssh
 
 ```
-ssh -T git@github.com
+// 命令
+ssh -T git@kangduu.github.com
+
+// 成功
+$ ssh -T git@kangduu.github.com
+Hi kangduu! You've successfully authenticated, but GitHub does not provide shell access.
+
+// 失败
+$ ssh -T git@kangduu.github.com
+Warning: Permanently added the RSA host key for IP address '192.30.255.112' to the list of known hosts.
+git@kangduu.github.com: Permission denied (publickey).
+
 ```
+
+### 免密pull push
