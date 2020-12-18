@@ -2,7 +2,7 @@
 
 1. 问题描述
 
-   当多次使用[setOption](https://echarts.apache.org/zh/api.html#echartsInstance.setOption)设置图表实例的配置项以及数据，并且每次option除了data数据不一致，其它内容完全一致时（如下所示），这将出现内存溢出，严重会导致浏览器崩溃（内存占用过高）。
+   当多次使用[setOption](https://echarts.apache.org/zh/api.html#echartsInstance.setOption)设置图表实例的配置项以及数据（未使用clear清除），并且每次option除了data数据不一致，其它内容完全一致时（如下所示），这将产生内存溢出，严重将会导致浏览器崩溃（内存占用过高）。
 
    ```js
    option = {
@@ -49,7 +49,7 @@
            }
        ]
    };
-   // 多次调用 由于xAxis、yAxis、series等option数据格式为数组，所以会多次合并数据，导致数组增大
+   // 多次调用，所有的配置项及数据都将会合并为数组，进而缓存增大
    myChart.setOption(option);
    myChart.setOption(option);
    ...
